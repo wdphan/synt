@@ -47,6 +47,19 @@ export const TransactionProvider = ({ children }) => {
 		}
 	}
 
+	const checkIfTransactionsExists = async () => {
+		try {
+			if (ethereum) {
+				const transactionsContract = createEthereumContract()
+				const currentTransactionCount = await transactionsContract.getTransactionCount()
+
+				window.localStorage.setItem('transactionCount', currentTransactionCount)
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	const connectWallet = async () => {
 		try {
 			if (!ethereum) return alert('Please install metamask')
@@ -94,19 +107,22 @@ export const TransactionProvider = ({ children }) => {
 			console.log(`Success - ${transactionHash.hash}`)
 			setIsLoading(false)
 
-			const transactionCount = await transactionsContract.getTransactionCount()
+			const transactionsCount = await transactionsContract.getTransactionCount()
 
-			setTransactionCount(transactionCount.toNumber())
+			setTransactionCount(transactionsCount.toNumber())
+			window.location.reload()
+			console.log('No ethereum object')
 		} catch (error) {
 			console.log(error)
 
-			throw new Error('No ethereum object.')
+			throw new Error('No ethereum object')
 		}
 	}
 
 	useEffect(() => {
 		checkIfWalletIsConnected()
-	}, [])
+		checkIfTransactionsExists()
+	}, [transactionCount])
 
 	return (
 		<TransactionContext.Provider

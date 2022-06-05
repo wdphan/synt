@@ -5,6 +5,7 @@ import { chain, createClient, WagmiConfig } from 'wagmi'
 import { apiProvider, configureChains, getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import '../index.css'
 import { TransactionProvider } from '../context/TransactionContext'
+import Navbar from '@/components/Navbar'
 
 const { chains, provider } = configureChains(
 	[chain.optimism],
@@ -19,6 +20,7 @@ const App = ({ Component, pageProps }) => {
 		<TransactionProvider>
 			<WagmiConfig client={wagmiClient}>
 				<RainbowKitProvider chains={chains}>
+					<Navbar />
 					<div className="min-h-screen">
 						<div className="gradient-bg-welcome">
 							<Component {...pageProps} />

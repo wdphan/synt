@@ -14,10 +14,8 @@ body {
 }
 
 .gradient-bg-welcome {
-	background-color: #0f0e13;
-	background-image: radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
-		radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
-		radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
+	background-color: #0e0e0f;
+	background-image: #0e0e0f;
 	height: 100vh;
 	display: flex;
 	align-items: center;
@@ -25,25 +23,18 @@ body {
 }
 
 .gradient-bg-services {
-	background-color: #0f0e13;
-	background-image: radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
-		radial-gradient(at 50% 100%, hsla(225, 39%, 25%, 1) 0, transparent 50%);
+	background-color: #0e0e0f;
+	background-image: #0e0e0f;
 }
 
 .gradient-bg-transactions {
-	background-color: #0f0e13;
+	background-color: #0e0e0f;
 	background-image: radial-gradient(at 0% 100%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
 		radial-gradient(at 50% 0%, hsla(225, 39%, 25%, 1) 0, transparent 50%);
 }
 
-.gradient-bg-footer {
-	background-color: #0f0e13;
-	background-image: radial-gradient(at 0% 100%, hsla(253, 16%, 7%, 1) 0, transparent 53%),
-		radial-gradient(at 50% 150%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
-}
-
 .blue-glassmorphism {
-	background: rgb(39, 51, 89, 0.4);
+	background: #232329;
 	border-radius: 16px;
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 	backdrop-filter: blur(5px);
@@ -62,13 +53,21 @@ body {
 
 .eth-card {
 	background-color: #a099ff;
-	background-image: radial-gradient(at 83% 67%, rgb(152, 231, 156) 0, transparent 58%),
-		radial-gradient(at 67% 20%, hsla(357, 94%, 71%, 1) 0, transparent 59%),
-		radial-gradient(at 88% 35%, hsla(222, 81%, 65%, 1) 0, transparent 50%),
-		radial-gradient(at 31% 91%, hsla(9, 61%, 61%, 1) 0, transparent 52%),
-		radial-gradient(at 27% 71%, hsla(336, 91%, 65%, 1) 0, transparent 49%),
-		radial-gradient(at 74% 89%, hsla(30, 98%, 65%, 1) 0, transparent 51%),
-		radial-gradient(at 53% 75%, hsla(174, 94%, 68%, 1) 0, transparent 45%);
+	background-image: linear-gradient(
+		to right top,
+		#43b5f4,
+		#53baf4,
+		#61bff4,
+		#6ec4f5,
+		#7ac9f5,
+		#82cdf6,
+		#8ad0f6,
+		#92d4f7,
+		#99d7f9,
+		#9fdbfb,
+		#a6defd,
+		#ace2ff
+	);
 }
 
 .text-gradient {
