@@ -1,6 +1,6 @@
 # Synt
 
-![GitHub Project READMEs (2)](https://user-images.githubusercontent.com/95723185/169942178-1ebd21e9-b90b-4732-8649-637ea6803b2f.png)
+![Screen Shot 2022-06-05 at 4 43 43 PM](https://user-images.githubusercontent.com/95723185/172071263-1be2ea6a-7719-4d35-bf4f-1ecea4780987.png)
 
 ## Usage
 Connect your wallet and easily send crypto from one wallet to another with customizable input fields.
