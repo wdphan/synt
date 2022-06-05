@@ -1,146 +1,102 @@
 import { FC } from 'react'
-import { APP_NAME } from '@/lib/consts'
 import { BookOpenIcon, CodeIcon, ShareIcon } from '@heroicons/react/outline'
+import { SiEthereum } from 'react-icons/si'
+import { BsInfoCircle } from 'react-icons/bs'
+import Loader from '@/components/Loader'
+import React, { useContext } from 'react'
+import { TransactionContext } from '@/context/TransactionContext'
 
-const Home: FC = () => {
+const companyCommonStyles =
+	'min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white'
+
+const Input = ({ placeholder, name, type, value, handleChange }) => (
+	<input
+		placeholder={placeholder}
+		type={type}
+		step="0.0001"
+		value={value}
+		onChange={e => handleChange(e, name)}
+		className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+	/>
+)
+
+const Hero = () => {
+	const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } =
+		useContext(TransactionContext)
+
+	const handleSubmit = e => {
+		const { addressTo, amount, keyword, message } = formData
+
+		e.preventDefault()
+
+		if (!addressTo || !amount || !keyword || !message) return
+
+		sendTransaction()
+	}
+
 	return (
-		<div className="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-			<div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
-				<div className="flex justify-center pt-8 sm:justify-start sm:pt-0">
-					<h1 className="text-6xl font-bold dark:text-white">{APP_NAME}</h1>
-				</div>
+		<div className="sm:mb-14 md:h-100vh lg:h-100vh xl:h-100vh ">
+			<div className="flex justify-center items-center h-100vh sm:block ">
+				<div className="flex mf:flex-row flex-col items-start justify-between md:pr-20 lg:pr-20 xl:pr-20 py-12 px-4 ">
+					<div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
+						<h1 className="text-5xl sm:text-3xl text-white">
+							Send Crypto <br /> across the world
+						</h1>
+						<p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">
+							Explore the crypto world. Buy and sell cryptocurrencies easily on Synt.
+						</p>
+						{!currentAccount && (
+							<button type="button" onClick={connectWallet}>
+								<p className="text-white text-base font-bold mt-10 rounded-full pr-10 pl-10 pt-2 pb-2 bg-blue-500">
+									Connect Wallet
+								</p>
+							</button>
+						)}
 
-				<div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-					<div className="grid grid-cols-1 md:grid-cols-2">
-						<div className="p-6">
-							<div className="flex items-center">
-								<BookOpenIcon className="w-8 h-8 text-gray-500" />
-								<div className="ml-4 text-lg leading-7 font-semibold">
-									<a
-										href="https://laravel.com/docs"
-										className="underline text-gray-900 dark:text-white"
-									>
-										Next.js Docs
-									</a>
-								</div>
-							</div>
-
-							<div className="ml-12">
-								<div className="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-									Next.js gives you the best developer experience with all the features you need for
-									production: hybrid static &amp; server rendering, TypeScript support, smart
-									bundling, route pre-fetching, and more. No config needed.
-								</div>
-							</div>
-						</div>
-
-						<div className="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-							<div className="flex items-center">
-								<BookOpenIcon className="w-8 h-8 text-gray-500" />
-								<div className="ml-4 text-lg leading-7 font-semibold">
-									<a href="https://laracasts.com" className="underline text-gray-900 dark:text-white">
-										wagmi Docs
-									</a>
-								</div>
-							</div>
-
-							<div className="ml-12">
-								<div className="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-									wagmi is a collection of React Hooks containing everything you need to start working
-									with Ethereum. wagmi makes it easy to display ENS and balance information, sign
-									messages, interact with contracts, and much more — all with caching, request
-									deduplication, and persistence.
-								</div>
-							</div>
-						</div>
-
-						<div className="p-6 border-t border-gray-200 dark:border-gray-700">
-							<div className="flex items-center">
-								<BookOpenIcon className="w-8 h-8 text-gray-500" />
-								<div className="ml-4 text-lg leading-7 font-semibold">
-									<a
-										href="https://laravel-news.com/"
-										className="underline text-gray-900 dark:text-white"
-									>
-										Tailwind Docs
-									</a>
-								</div>
-							</div>
-
-							<div className="ml-12">
-								<div className="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-									Tailwind CSS is a highly customizable, low-level CSS framework that gives you all of
-									the building blocks you need to build bespoke designs without any annoying
-									opinionated styles you have to fight to override.
-								</div>
-							</div>
-						</div>
-
-						<div className="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
-							<div className="flex items-center">
-								<CodeIcon className="w-8 h-8 text-gray-500" />
-								<div className="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">
-									About this Template
-								</div>
-							</div>
-
-							<div className="ml-12">
-								<div className="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-									This starter kit is composed of{' '}
-									<a href="https://nextjs.org" className="underline" target="_blank" rel="noreferrer">
-										Next.js
-									</a>{' '}
-									and{' '}
-									<a
-										href="https://tailwindcss.com"
-										className="underline"
-										target="_blank"
-										rel="noreferrer"
-									>
-										Tailwind CSS
-									</a>
-									, with{' '}
-									<a
-										href="https://rainbowkit.com"
-										className="underline"
-										target="_blank"
-										rel="noreferrer"
-									>
-										RainbowKit
-									</a>
-									,{' '}
-									<a href="https://ethers.org" className="underline" target="_blank" rel="noreferrer">
-										ethers
-									</a>{' '}
-									&amp;{' '}
-									<a href="https://wagmi.sh" className="underline" target="_blank" rel="noreferrer">
-										wagmi
-									</a>{' '}
-									for all your web3 needs. It uses{' '}
-									<a
-										href="https://www.typescriptlang.org/"
-										className="underline"
-										target="_blank"
-										rel="noreferrer"
-									>
-										Typescript
-									</a>{' '}
-									and an opinionated directory structure for maximum dev confy-ness. Enjoy!
-								</div>
-							</div>
+						<div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
+							<div className={`rounded-tl-2xl ${companyCommonStyles}`}>Reliability</div>
+							<div className={`rounded-tr-2xl ${companyCommonStyles}`}>Security</div>
+							<div className={`sm:rounded-tr-2xl ${companyCommonStyles}`}>Ethereum</div>
+							<div className={`sm:rounded-bl-2xl ${companyCommonStyles}`}>Web 3.0</div>
+							<div className={`rounded-bl-2xl ${companyCommonStyles}`}>Low Fees</div>
+							<div className={`rounded-br-2xl ${companyCommonStyles}`}>Blockchain</div>
 						</div>
 					</div>
 				</div>
 
-				<div className="flex justify-center mt-4 sm:items-center sm:justify-between">
-					<div className="text-center text-sm text-gray-500 sm:text-left">
-						<div className="flex items-center">
-							<ShareIcon className="-mt-px w-5 h-5 text-gray-400" />
-
-							<a href="https://twitter.com/m1guelpf" className="ml-1 underline">
-								Share
-							</a>
+				<div className="flex flex-col flex-1 items-center justify-start w-full mt-0">
+					<div className="p-3 flex justify-end items-start flex-col rounded-xl sm:h-32 md:h-40 lg:h-40 xl:h-40 w-72 sm:w-72 my-5 eth-card .white-glassmorphism ">
+						<div className="flex justify-between flex-col w-full h-full">
+							<div className="flex justify-between items-start">
+								<div className="w-10 h-10 rounded-full border-2 border-white flex justify-center items-center">
+									<SiEthereum fontSize={21} color="#fff" />
+								</div>
+								<BsInfoCircle fontSize={17} color="#fff" />
+							</div>
+							<div>
+								<p className="text-white font-light text-sm"></p>
+								<p className="text-white font-semibold text-lg mt-1">Ethereum</p>
+							</div>
 						</div>
+					</div>
+					<div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism sm:mt-0 sm:h-45">
+						<Input placeholder="Address To" name="addressTo" type="text" handleChange={handleChange} />
+						<Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} />
+						<Input placeholder="Keyword (Gif)" name="keyword" type="text" handleChange={handleChange} />
+						<Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} />
+						<div className="h-[1px] w-full bg-gray-400 my-2" />
+
+						{false ? (
+							<Loader />
+						) : (
+							<button
+								type="button"
+								onClick={handleSubmit}
+								className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
+							>
+								Send now
+							</button>
+						)}
 					</div>
 				</div>
 			</div>
@@ -148,4 +104,4 @@ const Home: FC = () => {
 	)
 }
 
-export default Home
+export default Hero
